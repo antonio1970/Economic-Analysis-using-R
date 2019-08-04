@@ -1,7 +1,7 @@
 ---
 title: "Lecture 1: Introduction to R"
 subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
-author: Antonio Rodriguez Andres| Technical University of Ostrava
+author: Dr. Antonio Rodriguez Andres| Technical University of Ostrava
 date: EAR #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
