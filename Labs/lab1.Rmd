@@ -1,0 +1,84 @@
+---
+title: "Lab 1: Economic Analysis with R"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## First steps
+1. Open RStudio on yours or a group member's laptop
+2. Check RStudio version (version command, mine )
+2. Click File > New File > R script. 
+
+You will see a blank section of screen in the top-left of your RStudio window. This is where you will write your first R script. This is similar to write a do file in Stata.
+
+## Four basic areas on your screen
+
+1. The is the `script` editor as in Stata
+2. The bottom left is the `console` (you can use R interactively by typing commands as in Stata)
+3. The upper right is where you see the list of objects in your workspace. History is also there (you know at aytime what you did type in your console)
+4. The bottom right is where you find the available packages, graphical output, your file structure, and help.  
+
+### Console
+The bottom-left of the screen has a tab called "Console". This is basically a very fancy calculator.
+
+Try the basic calculator by typing something like
+```{r}
+2+2
+```
+
+Or even something fancier like
+```{r}
+sqrt(pi)
+```
+
+### Packages
+R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+install.packages("tidyverse", repos='http://cran.us.r-project.org')
+install.packages("skimr", repos='http://cran.us.r-project.org')
+install.packages("wooldridge", repos='http://cran.us.r-project.org')
+```
+
+You've just installed two basic packages. Basically, you have downloaded them onto your laptop. Just like with other software on your computer, you only need to do the installation once. However, you still need to tell R that you will be using the packages (by using the `library`command). Add the following two lines of code to your script (below the first two lines you wrote). Notice how there are no quotation marks inside the parenthese this time.
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library(tidyverse) # one of the most famous R pacakge for data manipulation
+library(skimr)  # for data exploration
+library(wooldridge) # it refers to Wooldrige's undergraduate texbook
+```
+
+Whenever you start over a new Rstudio session, you need to load the approrpiate libraries.
+
+### Running a script
+To execute the script, click on the word "Source" in the top-right corner of the top-left window pane. This will take what is in your script and automatically send it to the console (as if you typed it directly into the console)
+
+To save the script, click on the disk icon at the top of your script pane (but not the disk icon at the very top of RStudio). Name your script `ICL1_XYZ.R` where `XYZ` are your initials.
+
+### Commenting
+Now, put a hashtag (#) in front of the first two lines of code in your script, like so:
+```{r}
+#install.packages("tidyverse")
+#install.packages("skimr")
+#install.packages("wooldridge")
+```
+
+The hashtag is how you tell R not to run the code in your script. This is known as "commenting" your code.
+
+At the very top of your script, type the names of your group members with a hashtag in front.
+
+**From now on, add all of the code you see to your script.**
+
+## Exploring data
+Now that you've got some of the basics of R, let's look at some data!
+
+### Loading data
+We're going to load a data set from the `wooldridge` package. The data set is called `wage1`.
+```{r}
+df <- as_tibble(wage1)
+```
+
+What we did there was convert it to a `tibble`, which is a nice format for data sets (see Ch. 10 of @r4ds). We called the converted tibble `df`, but you can call it whatever you want: `mydata`, `data123`, whatever
