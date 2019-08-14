@@ -42,4 +42,11 @@ par(mfrow=c(2,2))
 plot(mod)
 ```
 
+## Generate LaTeX tables in R 
+
+```{r}
+library(texreg)
+reg.model <- texreg (mod, file= "mod.tex", 
+                      caption.above = T, caption = "Regression results")
+```
 

@@ -139,3 +139,18 @@ Now, put a hashtag (#) in front of the first two lines of code in your script, l
 The hashtag is how you tell R not to run the code in your script. This is known as "commenting" your code.
 
 At the very top of your script, type the names of your group members with a hashtag in front.
+
+### Citation R and packages 
+
+If you need to cite R, just use
+
+```{r}
+citation()
+```
+
+if for instance, you need to cite one of the packages, then use
+
+```{r}
+citation(package = "ggplot2")
+```
+
