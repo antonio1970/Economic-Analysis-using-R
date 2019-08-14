@@ -35,6 +35,8 @@ If you don't know exactly the name of the fuction, just use double question mark
 
 ```{r}
 ??cluster
+help.search("cluster")
+apropos("cluster")
 ```
 
 
@@ -49,6 +51,8 @@ Try the basic calculator by typing something like
 Or even something fancier like
 ```{r}
 sqrt(pi)
+b <- 1.4156
+sqrt(b)
 ```
 
 
@@ -67,7 +71,19 @@ rm(list = ls())
 ```
 
 
-Lastly, most of the tiem when using variables in a dataframe, you refer to them by using the `$`symbol. This can be avoided by using the `attach` command
+Lastly, most of the them when using variables in a dataframe, you refer to them by using the `$`symbol. This can be avoided by using the `attach` command.
+
+Just as an example, let us load one of the built in datasets in R, and compute the gas consumption per mile.
+
+```{r}
+data(mtcars)
+mean(mtcars$mpg) # Notice that we get access to the variables with the dollar symbol
+
+attach(mtcars)
+mean(mpg) # there is no need to use the dollar symbol
+```
+
+
 ### Packages
 R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
 

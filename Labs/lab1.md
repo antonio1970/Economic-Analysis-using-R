@@ -32,6 +32,7 @@ If you don't know exactly the name of the fuction, just use double question mark
 
 ``` r
 ??cluster
+help.search("cluster")
 ```
 
 ### Console
@@ -73,7 +74,20 @@ ls()
 rm(list = ls())
 ```
 
-Lastly, most of the tiem when using variables in a dataframe, you refer to them by using the `$`symbol. This can be avoided by using the `attach` command \#\#\# Packages R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
+Lastly, most of the them when using variables in a dataframe, you refer to them by using the `$`symbol. This can be avoided by using the `attach` command.
+
+Just as an example, let us load one of the built in datasets in R, and compute the gas consumption per mile.
+
+``` r
+data(mtcars)
+mean(mtcars$mpg)
+```
+
+    ## [1] 20.09062
+
+### Packages
+
+R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
 
 ``` r
 install.packages("tidyverse", repos='http://cran.us.r-project.org')
@@ -82,7 +96,7 @@ install.packages("tidyverse", repos='http://cran.us.r-project.org')
     ## package 'tidyverse' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmp4SgHKF\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpYRNb0b\downloaded_packages
 
 ``` r
 install.packages("skimr", repos='http://cran.us.r-project.org')
@@ -91,7 +105,7 @@ install.packages("skimr", repos='http://cran.us.r-project.org')
     ## package 'skimr' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmp4SgHKF\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpYRNb0b\downloaded_packages
 
 ``` r
 install.packages("wooldridge", repos='http://cran.us.r-project.org')
@@ -100,7 +114,7 @@ install.packages("wooldridge", repos='http://cran.us.r-project.org')
     ## package 'wooldridge' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmp4SgHKF\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpYRNb0b\downloaded_packages
 
 You've just installed two basic packages. Basically, you have downloaded them onto your laptop. Just like with other software on your computer, you only need to do the installation once. However, you still need to tell R that you will be using the packages (by using the `library`command). Add the following two lines of code to your script (below the first two lines you wrote). Notice how there are no quotation marks inside the parenthese this time.
 
