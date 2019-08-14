@@ -139,16 +139,3 @@ Now, put a hashtag (#) in front of the first two lines of code in your script, l
 The hashtag is how you tell R not to run the code in your script. This is known as "commenting" your code.
 
 At the very top of your script, type the names of your group members with a hashtag in front.
-
-**From now on, add all of the code you see to your script.**
-
-## Exploring data
-Now that you've got some of the basics of R, let's look at some data!
-
-### Loading data
-We're going to load a data set from the `wooldridge` package. The data set is called `wage1`.
-```{r}
-df <- as_tibble(wage1)
-```
-
-What we did there was convert it to a `tibble`, which is a nice format for data sets (see Ch. 10 of @r4ds). We called the converted tibble `df`, but you can call it whatever you want: `mydata`, `data123`, whatever
