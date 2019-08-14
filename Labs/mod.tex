@@ -1,0 +1,39 @@
+\documentclass {article}
+\begin{document}
+\begin{table}
+\caption{Regression results}
+\begin{center}
+\begin{tabular}{l c }
+\hline
+ & Model 1 \\
+\hline
+(Intercept)  & $37.28^{***}$ \\
+             & $(3.65)$      \\
+cylinders4c  & $6.23^{*}$    \\
+             & $(2.49)$      \\
+cylinders5c  & $8.25^{*}$    \\
+             & $(3.81)$      \\
+cylinders6c  & $2.13$        \\
+             & $(2.78)$      \\
+cylinders8c  & $4.57$        \\
+             & $(3.21)$      \\
+displacement & $0.00$        \\
+             & $(0.01)$      \\
+horsepower   & $-0.06^{**}$  \\
+             & $(0.02)$      \\
+weight       & $-0.00^{***}$ \\
+             & $(0.00)$      \\
+acceleration & $0.05$        \\
+             & $(0.14)$      \\
+\hline
+R$^2$        & 0.73          \\
+Adj. R$^2$   & 0.72          \\
+Num. obs.    & 280           \\
+RMSE         & 4.09          \\
+\hline
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\label{table:coefficients}
+\end{center}
+\end{table}
+\end{document}
