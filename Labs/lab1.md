@@ -121,7 +121,7 @@ install.packages("tidyverse", repos='http://cran.us.r-project.org')
     ## package 'tidyverse' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\RtmpOYXsUZ\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpYzyIPP\downloaded_packages
 
 ``` r
 install.packages("skimr", repos='http://cran.us.r-project.org')
@@ -130,7 +130,7 @@ install.packages("skimr", repos='http://cran.us.r-project.org')
     ## package 'skimr' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\RtmpOYXsUZ\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpYzyIPP\downloaded_packages
 
 ``` r
 install.packages("wooldridge", repos='http://cran.us.r-project.org')
@@ -139,7 +139,7 @@ install.packages("wooldridge", repos='http://cran.us.r-project.org')
     ## package 'wooldridge' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\RtmpOYXsUZ\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpYzyIPP\downloaded_packages
 
 You've just installed two basic packages. We can also check it out by using the following syntax
 
@@ -2632,6 +2632,14 @@ library(wooldridge) # it refers to Wooldrige's undergraduate texbook
 ```
 
 Whenever you start over a new Rstudio session, you need to load the approrpiate libraries.
+
+In RStudio, you can also install packages by using the R interface. You will find it at Tools -&gt; Install Package, and there you will get a pop--up window to type the package you want to install
+
+``` r
+knitr::include_graphics("rstudio1.png")
+```
+
+![](rstudio1.png)
 
 ### Running a script
 

@@ -120,6 +120,9 @@ library(wooldridge) # it refers to Wooldrige's undergraduate texbook
 
 Whenever you start over a new Rstudio session, you need to load the approrpiate libraries.
 
+In RStudio, you can also install packages by using the R interface. You will find it at Tools -> Install Package, and there you will get a pop--up window to type the package you want to install
+
+
 ### Running a script
 To execute the script, click on the word "Source" in the top-right corner of the top-left window pane. This will take what is in your script and automatically send it to the console (as if you typed it directly into the console)
 
