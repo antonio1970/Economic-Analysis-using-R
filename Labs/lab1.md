@@ -8,15 +8,31 @@ First steps
 2.  Check RStudio version (version command, mine )
 3.  Click File &gt; New File &gt; R script.
 
-You will see a blank section of screen in the top-left of your RStudio window. This is where you will write your first R script. This is similar to write a do file in Stata.
+You will see a blank section of screen in the top-left of your RStudio window. This is where you will write your first R script. This is similar to write a do file in Stata. Notice that R code is saved as a `.r file`.
 
-Four basic areas on your screen
--------------------------------
+### Four basic areas on your screen
 
 1.  The is the `script` editor as in Stata
 2.  The bottom left is the `console` (you can use R interactively by typing commands as in Stata)
 3.  The upper right is where you see the list of objects in your workspace. History is also there (you know at aytime what you did type in your console)
 4.  The bottom right is where you find the available packages, graphical output, your file structure, and help.
+
+### Help
+
+Getting help with R is easy. To get further information about the syntax of any R function, just type a `?` before the function name. See the example below
+
+``` r
+# regression function (fitting linear models by OLS)
+?lm
+```
+
+    ## starting httpd help server ... done
+
+If you don't know exactly the name of the fuction, just use double question marks
+
+``` r
+??cluster
+```
 
 ### Console
 
@@ -38,9 +54,26 @@ sqrt(pi)
 
     ## [1] 1.772454
 
-### Packages
+### Objects and basic R
 
-R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
+R is a oriented object language. For R, everything is an object, and each object has its own name.
+
+1.  To remove any particular object from the current session employ `rm()`
+2.  To list all objects in your workspace use `ls()`
+3.  To remove all objects from your workingspace just type `rm(list =ls())`
+
+``` r
+x<-2 # Creating an object
+ls()
+```
+
+    ## [1] "x"
+
+``` r
+rm(list = ls())
+```
+
+Lastly, most of the tiem when using variables in a dataframe, you refer to them by using the `$`symbol. This can be avoided by using the `attach` command \#\#\# Packages R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
 
 ``` r
 install.packages("tidyverse", repos='http://cran.us.r-project.org')
@@ -49,7 +82,7 @@ install.packages("tidyverse", repos='http://cran.us.r-project.org')
     ## package 'tidyverse' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmp0EgXJA\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\Rtmp4SgHKF\downloaded_packages
 
 ``` r
 install.packages("skimr", repos='http://cran.us.r-project.org')
@@ -58,7 +91,7 @@ install.packages("skimr", repos='http://cran.us.r-project.org')
     ## package 'skimr' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmp0EgXJA\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\Rtmp4SgHKF\downloaded_packages
 
 ``` r
 install.packages("wooldridge", repos='http://cran.us.r-project.org')
@@ -67,7 +100,7 @@ install.packages("wooldridge", repos='http://cran.us.r-project.org')
     ## package 'wooldridge' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmp0EgXJA\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\Rtmp4SgHKF\downloaded_packages
 
 You've just installed two basic packages. Basically, you have downloaded them onto your laptop. Just like with other software on your computer, you only need to do the installation once. However, you still need to tell R that you will be using the packages (by using the `library`command). Add the following two lines of code to your script (below the first two lines you wrote). Notice how there are no quotation marks inside the parenthese this time.
 

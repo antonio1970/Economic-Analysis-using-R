@@ -12,14 +12,31 @@ knitr::opts_chunk$set(echo = TRUE)
 2. Check RStudio version (version command, mine )
 2. Click File > New File > R script. 
 
-You will see a blank section of screen in the top-left of your RStudio window. This is where you will write your first R script. This is similar to write a do file in Stata.
+You will see a blank section of screen in the top-left of your RStudio window. This is where you will write your first R script. This is similar to write a do file in Stata. Notice that R code is saved as a `.r file`.
 
-## Four basic areas on your screen
+### Four basic areas on your screen
 
 1. The is the `script` editor as in Stata
 2. The bottom left is the `console` (you can use R interactively by typing commands as in Stata)
 3. The upper right is where you see the list of objects in your workspace. History is also there (you know at aytime what you did type in your console)
 4. The bottom right is where you find the available packages, graphical output, your file structure, and help.  
+
+### Help
+
+Getting help with R is easy. To get further information about the syntax of any R function,  just type a `?` before the function name. See the example below
+
+```{r}
+# regression function (fitting linear models by OLS)
+?lm
+```
+
+
+If you don't know exactly the name of the fuction, just use double question marks
+
+```{r}
+??cluster
+```
+
 
 ### Console
 The bottom-left of the screen has a tab called "Console". This is basically a very fancy calculator.
@@ -34,6 +51,23 @@ Or even something fancier like
 sqrt(pi)
 ```
 
+
+### Objects and basic R
+
+R is a oriented object language. For R, everything is an object, and each object has its own name.
+
+1. To remove any particular object from the current session employ `rm()`
+2. To list all objects in your workspace use `ls()`
+3. To remove all objects from your workingspace just type `rm(list =ls())`
+
+```{r}
+x<-2 # Creating an object
+ls()
+rm(list = ls())
+```
+
+
+Lastly, most of the tiem when using variables in a dataframe, you refer to them by using the `$`symbol. This can be avoided by using the `attach` command
 ### Packages
 R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
 
