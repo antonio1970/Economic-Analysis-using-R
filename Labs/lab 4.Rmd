@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(caret)
-auto <- read.csv("../Labs/auto-mpg.csv")
+auto <- read.csv("../Labs/data/auto-mpg.csv")
 auto$cylinders <- factor(auto$cylinders,
                          levels = c(3,4,5,6,8),
                          labels = c("3c", "4c", "5c", "6c", "8c"))
@@ -41,6 +41,34 @@ sqrt(mean((pred - auto[-t.id,]$mpg)^2))
 par(mfrow=c(2,2))
 plot(mod)
 ```
+
+## Extracting regression results 
+
+
+```{r}
+str(summary(mod))# Within the lm object, we store the main regression output
+
+Yhat <-mod$fitted.values
+resid <-mod$residuals
+coeff <-mod$coefficients
+coeff
+Degress <- mod$df
+Degress
+summary(mod)$r.squared
+s <-mod$sigma
+s
+```
+
+
+## Fancy way using broom package
+```{r}
+library(broom)
+tidy(mod)
+glance(mod)
+```
+
+
+
 
 ## Generate LaTeX tables in R 
 
