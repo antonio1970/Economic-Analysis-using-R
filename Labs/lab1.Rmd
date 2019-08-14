@@ -40,6 +40,14 @@ apropos("cluster")
 ```
 
 
+Finally, the structure of the help for each R function is:
+
+1. Description
+2. Usage
+3. Arguments
+4. Value
+5. References
+
 ### Console
 The bottom-left of the screen has a tab called "Console". This is basically a very fancy calculator.
 
@@ -93,7 +101,16 @@ install.packages("skimr", repos='http://cran.us.r-project.org')
 install.packages("wooldridge", repos='http://cran.us.r-project.org')
 ```
 
-You've just installed two basic packages. Basically, you have downloaded them onto your laptop. Just like with other software on your computer, you only need to do the installation once. However, you still need to tell R that you will be using the packages (by using the `library`command). Add the following two lines of code to your script (below the first two lines you wrote). Notice how there are no quotation marks inside the parenthese this time.
+You've just installed two basic packages. We can also check it out by using the following syntax
+
+```{r}
+installed.packages()
+```
+
+
+
+
+Basically, you have downloaded them onto your laptop. Just like with other software on your computer, you only need to do the installation once. However, you still need to tell R that you will be using the packages (by using the `library`command). Add the following two lines of code to your script (below the first two lines you wrote). Notice how there are no quotation marks inside the parenthese this time.
 
 ```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 library(tidyverse) # one of the most famous R pacakge for data manipulation
