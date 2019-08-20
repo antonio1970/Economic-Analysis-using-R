@@ -1,5 +1,5 @@
 ---
-title: "Lab 1: Economic Analysis with R"
+title: "Lab 1: First Steps in R. Economic Analysis with R"
 output: github_document
 ---
 

@@ -1,0 +1,80 @@
+---
+title: "Lab 5: Using the ggplot package."
+output: github_document
+---
+
+
+## Introduction
+
+R provides excellent graphing capabilities with pacakges such as **lattice** and **ggplot2**.
+
+For more details on using R Markdown see <http://rmarkdown.rstudio.com>. We will briefly describe some simple graphs using base graphics from the previous unit and then show their counterparts in ggplot2.
+
+
+## What is ggplot?
+
+An R package designed to create plots based on a theory of the grammar of the graphics
+
+## Why ggplot instead of base R?
+
+* nice defaults
+
+* easy faceting
+
+* more natural syntax
+
+* can switch chart types more easily
+
+## Reading and checking the structure of the dataset
+
+```{r}
+data.auto = read.csv('../Labs/data/auto-mpg.csv')
+head(data.auto)
+attach(data.auto)
+```
+
+## ggplot syntax
+
+The basic structure for ggplot2 starts up with the **ggplot** function. It can take additional arguments or fewer but we will stick with that for the time being.
+
+In addition to this, we add layers (options) with the plus sign. We will discuss geometric layers with points, or lines with the following functions
+
+1. geom_point ()
+2. geom_line ()
+3. geom_histogram ()
+
+
+##Histograms and densities with ggplot2
+
+We will plot the distribution of acceleration using ggplot2.
+
+```{r warning = FALSE}
+library(ggplot2)
+ggplot(data = data.auto) + geom_histogram(aes(x= acceleration))
+```
+
+
+## Categorical variables
+
+```{r}
+ggplot(data =data.auto) + geom_bar(aes(x= cylinders))
+table(cylinders)
+```
+
+##Scatterplots
+
+```{r}
+g = ggplot(data.auto, aes(x=mpg, y =weight)) + geom_point()
+g + ggtitle('Scatter plot') + xlab('Miles/US Galon') + ylab('Weight of the vehicle per 1000lbs')
+```
+
+
+## Boxplots
+```{r}
+ggplot(data.auto, aes(x= factor(cylinders), y= mpg)) + geom_boxplot()
+```
+
+## Violin plots
+```{r}
+ggplot(data.auto, aes(x=factor(cylinders), y =weight)) + geom_point() + geom_violin()
+```
