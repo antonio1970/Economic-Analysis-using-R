@@ -2,29 +2,154 @@
 title: "Lab 6: Logistic Regression. Economic Analysis with R"
 output: github_document
 ---
+## Introduction
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+* Logistic regression or logit model is employed to model dichotomous outcome variable (dependent variable). 
+* It is also a very popular classification algorithm in machine learning.  
+
+ * At the end of this unit, students will be able to:
+
+    *  know what does exactly logistic regression
+    *  become familiar with the syntax of R logistic regression
+     * apply the logit model in different contexts
+     
+
+# Applications of logistic regression 
+
+* Health care analysis
+* Geographic image processing
+* To make predictions about something we employ logistic regression
+
+
+
+## Basic syntax
+
+* It is quite similar to regression models using the lm () command. We employ the *glm ()* function that has the following basic arguments
+
+\begin{equation}
+glm(formula, data, family)
+\end{equation}
+
+* The formula indicates the relationship between variables. The dataset is the dataframe containing the information of the variables, and the family is the R object to specify the details of the model. In the case of logistic regression, its value is binomial.
+
+
+# Performance of the logistic regression
+
+* We need to test the performance of our model by using different metrics.
+   * Akaike criteria
+   * Null deviance
+   * Confusion matrix
+
+
+# Titanic dataset
+
+We will be using the Titanic dataset from Kaggle. Let us try to download it, and summarize the dataset
+
+
+```{r}
+fitting.data.raw = read.csv("../Labs/data/train.csv", header = TRUE, na.strings = c(''))
+str(fitting.data.raw)
+summary(fitting.data.raw)
 ```
 
-## GitHub Documents
 
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+## Missing values treatment
 
-## Including Code
-
-You can include R code in the document as follows:
-
-```{r cars}
-summary(cars)
+```{r}
+install.packages('mice', repos='http://cran.us.r-project.org')
+library(mice)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Pattern of missing values
+```{r}
+md.pattern(fitting.data.raw)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Visualizing missing values
+
+```{r}
+install.packages('VIM',repos='http://cran.us.r-project.org')
+library(VIM)
+```
+
+##Graphical analysis
+
+```{r}
+aggr_titanic = aggr(fitting.data.raw, col = mdc(1:2), numbers = TRUE, sortVars = TRUE)
+```
+
+
+## Subset, drop variables with lots of missing values, it can be imputed
+
+```{r}
+fitting.data.raw.copy1 = subset(fitting.data.raw, select = c(2, 3,5, 6, 7, 8, 10, 12))
+str(fitting.data.raw.copy1)
+```
+Alternativaley, with the column number or column names.
+
+```{r}
+fitting.data.raw.copy2 = fitting.data.raw[,c(2,3,5,6,7,8, 10, 12)]
+str(fitting.data.raw.copy2)
+```
+
+## Imputed missing values for Age with the mean
+
+```{r}
+install.packages('Hmisc',repos='http://cran.us.r-project.org')
+library(Hmisc)
+fitting.data.raw.copy1$Age = impute(fitting.data.raw.copy1$Age, mean)
+summary(fitting.data.raw.copy1)
+
+```
+## Categorical variables ( factors in R: sex, and embarked)
+
+```{r}
+sapply(fitting.data.raw.copy1, class)
+```
+
+## Remove NAs for one variable (Embarked)
+```{r}
+fitting.data.raw.copy1 = fitting.data.raw.copy1[!is.na(fitting.data.raw.copy1$Embarked),]
+summary(fitting.data.raw.copy1)
+```
+
+
+# Practical example
+
+```{r}
+# load the dataset and create a small dataframe
+temperatura <-c(66,70,69,68,67,72,73,70,57,63,70,78,67,53,67,75,70,81,76,79,75,76,58)
+defecto <-c( 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+aux <-matrix(c(temperatura,defecto),ncol = 2)
+colnames(aux) <- c('temperatura','defecto')
+datos<-data.frame(aux)
+```
+
+```{r}
+# Question. Count the number of correct/wrong
+
+table(datos$defecto)
+round(prop.table(table(datos$defecto)), 2)
+```
+
+```{r}
+# Graphical representation
+colores <- NULL
+colores[datos$defecto == 0] <- "green"
+colores[datos$defecto == 1] <- "red"
+plot(datos$temperatura, datos$defecto, pch = 21, bg = colores, xlab = "Temperatura", ylab = "Prob. defecto")
+legend("bottomleft", c("No defecto", "Si defecto"), pch = 21, col = c("green", "red"))
+```
+
+
+```{r}
+# Estimate a logistic regression model where the dependent variable is defecto and the explanatory variable is the temperature
+reg <- glm(defecto ~ temperatura, data = datos, family = binomial)
+summary(reg)
+```
+
+
+# References
+
+*R for everyone: Advanced Analytics and Graphics. Chapter 20. Generalized linear models. Logistic regression. Addison Wesley Data & Analytics Series.
