@@ -112,6 +112,75 @@ df_status(select_if(heart_disease, is.character))
 
 
 
+### Mutate function
+
+```{r}
+# crear variable mayor a 40 años
+heart_disease2 = heart_disease %>% mutate(es_mayor_40 = age > 40)
+
+# ifelse(condicion, por true, por false)
+heart_disease2$nueva_var=ifelse(heart_disease$age > 40, "es mayor a 40 años", "es menor o igual a 40 años") 
+select(heart_disease2, nueva_var)
+# crear variable high o low basado en  max_heart_rate > 150
+heart_disease3=heart_disease %>% mutate(estado_heart_rate=ifelse(max_heart_rate > 150, "high", "low"))
+select(heart_disease3, max_heart_rate, estado_heart_rate)
+```
+
+
+### Missing values with R base vs. Tidyverse syntax
+
+```{r}
+# Remplazo de nulos
+df_status(heart_disease)
+v_na_1=is.na(heart_disease$num_vessels_flour)
+heart_disease$num_vessels_flour[v_na_1]=999
+
+```
+
+
+```{r}
+## with dplyr
+data_clean=heart_disease3 %>% mutate(num_vessels_flour2=replace_na(num_vessels_flour, 999),
+                                     thal2=replace_na(as.character(thal), "missing")) %>% select(num_vessels_flour2, thal2)
+df_status(data_clean)
+
+# remove missing values
+data_clean2=na.omit(heart_disease3)
+```
+
+
+
+### Group_by and summarise functions
+
+```{r}
+# obtener promedio de max_heart_rate por has_heart_disease
+group_by(heart_disease, has_heart_disease) %>% summarise(prom_hr=mean(max_heart_rate))
+
+# obtener promedio de num_vessels_flour por has_heart_disease
+group_by(heart_disease, has_heart_disease) %>% summarise(prom_vess=mean(num_vessels_flour, na.rm = T),
+                                                         sd_vess=sd(num_vessels_flour, na.rm = T),
+                                                         prom_hr=mean(max_heart_rate)
+                                                         )
+
+# agrupar solo en variables numéricas
+res=group_by(heart_disease, has_heart_disease) %>% summarise_if(is.numeric, mean, na.rm=T)
+
+```
+
+
+```{r}
+# agrupar solo determinadas variables
+
+v_vars=c("age", "max_heart_rate")
+group_by(heart_disease, has_heart_disease) %>% summarise_at(v_vars, mean, na.rm=T)
+
+
+group_by(heart_disease, has_heart_disease) %>% summarise_at(vars(age, max_heart_rate), mean, na.rm=T)
+
+```
+
+
+
 ## Resources
 
 # dplyr official page: https://dplyr.tidyverse.org/
