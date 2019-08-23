@@ -55,6 +55,24 @@ sapply(gdf1, class)
 str(gdf1)
 ```
 
+### Description of the dataset
+
+```{r}
+summary(gdf1)
+anyNA(gdf1)
+names(gdf1)
+nrow(gdf1)
+colnames(gdf1)
+```
+
+```{r}
+# A more elegant way to inspect the dataset
+library(funModeling)
+df_status(gdf1)
+```
+
+
+
 ### Manipulating dataframes
 
 ```{r}
