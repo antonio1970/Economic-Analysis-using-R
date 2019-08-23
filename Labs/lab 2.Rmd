@@ -1,0 +1,84 @@
+---
+title: "Lab 2: Reading data and exploratory data analysis"
+output: github_document
+---
+
+### Introduction
+
+
+```{r}
+# Reading data from a csv file
+# By default, header = TRUE, and sep
+
+
+countries=read.csv("http://freakonometrics.free.fr/countries.csv",header=TRUE, sep= ';')
+
+
+# The read.csv & read.csv2 commands are intended to read comma separated value files
+# but read.csv2 is quite relevant for countries where they use comma as decimal point and a semicolon as separator  
+
+#check it out
+
+countries1=read.csv2("http://freakonometrics.free.fr/countries.csv",header=TRUE)
+
+# remove  first row in the dataset (blank)
+
+#keep all columns, and remove first row
+
+countries = countries[-1,]
+
+#inspect the dataset (first 6 observations), and the names of the variables in the dataframe
+
+head(countries)
+names(countries)
+
+```
+
+### Another example with gapminder
+
+```{r}
+gdf <- read.delim("../Labs/data/gapminderDataFiveYear.txt")
+head(gdf)
+```
+
+
+```{r}
+# Alternatively we can read the file as
+
+gdf1 = read.table('../Labs/data/gapminderDataFiveYear.txt', header = TRUE, sep = '\t')
+head(gdf1,4)
+```
+
+```{r}
+# To know the format of the variables included in the dataframe
+sapply(gdf1, class)
+str(gdf1)
+```
+
+### Manipulating dataframes
+
+```{r}
+# Generate a subset of the original dataframe, adn extract the first 5 observations
+gdf1[1:5,]
+subset(gdf1, gdf1$lifeExp < 30)
+gdf1[gdf1$lifeExp < 30, ]
+
+```
+
+
+```{r}
+# Extract data for Czech Republic from the dataframe
+
+gdf1[gdf1$country == 'Czech Republic', c('year', 'lifeExp', 'pop')]
+
+# Generate a data set with only observations for Czech Republic
+
+czech.data = gdf1[gdf1$country == 'Czech Republic', c('year', 'lifeExp', 'pop')]
+
+# Nice way of printing out dataframes with the tibble 
+
+library(dplyr)
+czech.table = tbl_df(gdf1[gdf1$country == 'Czech Republic', c('year', 'lifeExp', 'pop')])
+czech.table
+```
+

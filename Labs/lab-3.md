@@ -54,6 +54,8 @@ Tutorial
 
 -   The way we are going to proceed is as follows: loading the original data and saving it as an object with a meaningful name and an origin suffix. I will only made direct manipulations to the Hollywod movies dataframe.
 
+-   For futher description of the dataset \[link to description of the dataset\] (<https://archive.ics.uci.edu/ml/datasets/heart+Disease>)
+
 ### Dataset: heart\_disease
 
 -   Age (age in years)
