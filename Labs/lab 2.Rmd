@@ -65,7 +65,7 @@ nrow(gdf1)
 colnames(gdf1)
 ```
 
-```{r}
+```{r message=FALSE}
 # A more elegant way to inspect the dataset
 library(funModeling)
 df_status(gdf1)
@@ -84,7 +84,7 @@ gdf1[gdf1$lifeExp < 30, ]
 ```
 
 
-```{r}
+```{r message=FALSE}
 # Extract data for Czech Republic from the dataframe
 
 gdf1[gdf1$country == 'Czech Republic', c('year', 'lifeExp', 'pop')]

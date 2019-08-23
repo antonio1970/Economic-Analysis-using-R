@@ -169,29 +169,9 @@ library(funModeling)
 
     ## Warning: package 'funModeling' was built under R version 3.6.1
 
-    ## Loading required package: Hmisc
-
     ## Warning: package 'Hmisc' was built under R version 3.6.1
 
-    ## Loading required package: lattice
-
-    ## Loading required package: survival
-
-    ## Loading required package: Formula
-
-    ## Loading required package: ggplot2
-
     ## Warning: package 'ggplot2' was built under R version 3.6.1
-
-    ## 
-    ## Attaching package: 'Hmisc'
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     format.pval, units
-
-    ## funModeling v.1.8 :)
-    ## Examples and tutorials at livebook.datascienceheroes.com
 
 ``` r
 df_status(gdf1)
@@ -266,21 +246,6 @@ library(dplyr)
 ```
 
     ## Warning: package 'dplyr' was built under R version 3.6.1
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:Hmisc':
-    ## 
-    ##     src, summarize
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
 
 ``` r
 czech.table = tbl_df(gdf1[gdf1$country == 'Czech Republic', c('year', 'lifeExp', 'pop')])
