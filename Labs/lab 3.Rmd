@@ -7,6 +7,10 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Introduction
+
+- The aim of this lecture is to summarise the ultimate goals of the tidyverse package, and provide a short tutorial how to manipulate datasets by using the `dplyr` package.
+
 ## Tidyverse vs. base R (cont.)
 
 One point of convenience is that there is often a direct correspondence between a tidyverse command and its base R equivalent. 
@@ -19,3 +23,102 @@ These invariably follow a `tidyverse::snake_case` vs `base::period.case` rule. E
   
 If you call up the above examples, you'll see that the tidyverse alternative typically offers some enhancements or other useful options (and sometimes restrictions) over its base counterpart.
 - Remember: There are always many ways to achieve a single goal in R.
+
+### Tidyverse
+
+Tidyverse is primarily made up of a set of powerful and useful R packages (ggplot2, dplyr, tidyr, purr, readr, and tibble)
+
+It is a way of thinking of implementing tidy data.
+
+### Tidyverse packages
+
+Let's load the tidyverse meta-package and check the output.
+```{r tidyverse, message=FALSE}
+library(tidyverse)
+```
+
+We see that we have actually loaded a number of packages (which could also be loaded individually): `ggplot2`, `tibble`, `tidyr`, `readr`,`dplyr`, etc.
+
+### Tidyverse packages (cont.)
+
+- Today, however, I'm only really going to focus on one package: `dplyr`
+
+- These are the workhorse packages for cleaning and wrangling data. They are thus the ones that you will likely make the most use of (alongside `ggplot2`, which we already employed in previous presentations).
+
+- Data cleaning and wrangling occupies an enormous amount of time, no matter where you are in your research career
+
+## Tutorial 
+
+- In this tutorial, we will use the Hollywod movies dataset that is stored in your folder named data. This data can be also downloaded directly if you are connected to the internet.
+
+- The way we are going to proceed is as follows: loading the original data and saving it as an object with a meaningful name and an origin suffix. I will only made direct manipulations to the Hollywod movies dataframe.
+
+### Preliminaries
+
+```{r}
+library(funModeling)
+library(tidyverse)
+head(heart_disease,5)  
+heart_disease_orig <- heart_disease
+```
+
+### Arrange function
+
+```{r arrange}
+# Order dataset according to the age variable: 
+d1= heart_disease %>% arrange(age)
+# you can also type without using the piping. We use head to print out only the first 5 rows in the dataset
+
+arrange(heart_disease, age) %>% head()
+# variable chest_pain and age:
+d2= heart_disease %>% arrange(chest_pain, age) %>% head()
+# descending order:
+d3= heart_disease %>% arrange(-age) %>% head()
+```
+
+
+### Select function
+
+```{r}
+ # Seleccionando algunas variables con `select` 
+# thal, age, chest_pain
+d4=heart_disease %>% select(thal, age, chest_pain)
+
+# Con el simbolo menos (`-`) eliminamos variables
+d5=d4 %>% select(-chest_pain)
+
+# seleccionamos 2 y luego todas
+d6=heart_disease %>% select(age, thal, chest_pain, everything())
+```
+
+
+```{r}
+# Seleccionando por tipo de dato
+d9=select_if(heart_disease, is.numeric)
+# is.character
+# is.factor
+is.character(heart_disease$age)
+```
+
+### Select function 
+
+```{r select if}
+df_status(heart_disease)
+heart_disease$gender=as.character(heart_disease$gender)
+df_status(select_if(heart_disease, is.numeric))
+df_status(select_if(heart_disease, is.factor))
+df_status(select_if(heart_disease, is.character))
+```
+
+
+
+## Resources
+
+# dplyr official page: https://dplyr.tidyverse.org/
+# Introduction to dplyr: https://dplyr.tidyverse.org/articles/dplyr.html
+
+
+
+
+```
+

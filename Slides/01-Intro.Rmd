@@ -54,7 +54,7 @@ name: syllabus
 
 # Why this course?
 
-Fill in the gaps left by traditional econometrics and methods classes using less flexible econometrics packages.
+Fill in the gaps left by traditional econometrics and methods classes using less flexible econometrics and statistical packages.
 
 - Practical skills that tools that will benefit your dissertation and future career.
 - Neglected skills like how to actually find datasets in the wild and clean them.
