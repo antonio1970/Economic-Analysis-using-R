@@ -44,9 +44,10 @@ head(gdf)
 
 ```{r}
 # Alternatively we can read the file as
-
 gdf1 = read.table('../Labs/data/gapminderDataFiveYear.txt', header = TRUE, sep = '\t')
 head(gdf1,4)
+library(formattable)
+formattable(gdf1, align = c("l", "c", "c", "c", "c", "c"))
 ```
 
 ```{r}
