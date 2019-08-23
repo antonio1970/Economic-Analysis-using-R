@@ -111,6 +111,16 @@ df_status(select_if(heart_disease, is.character))
 ```
 
 
+### Filter function
+
+```{r}
+#With piping. Filter observations where gender = male
+heart_disease %>% filter(gender =="male") %>% head()
+#without piping
+filter(heart_disease, gender == "male")
+```
+
+
 
 ### Mutate function
 
