@@ -54,6 +54,23 @@ Tutorial
 
 -   The way we are going to proceed is as follows: loading the original data and saving it as an object with a meaningful name and an origin suffix. I will only made direct manipulations to the Hollywod movies dataframe.
 
+### Dataset: heart\_disease
+
+-   Age (age in years)
+-   Sex (1 = male; 0 = female)
+-   CP (chest pain type)
+-   TRESTBPS (resting blood pressure (in mm Hg on admission to the hospital))
+-   CHOL (serum cholestoral in mg/dl)
+-   FPS (fasting blood sugar &gt; 120 mg/dl) (1 = true; 0 = false)
+-   RESTECH (resting electrocardiographic results)
+-   THALACH (maximum heart rate achieved)
+-   EXANG (exercise induced angina (1 = yes; 0 = no))
+-   OLDPEAK (ST depression induced by exercise relative to rest)
+-   SLOPE (the slope of the peak exercise ST segment)
+-   CA (number of major vessels (0-3) colored by flourosopy)
+-   THAL (3 = normal; 6 = fixed defect; 7 = reversable defect)
+-   TARGET (1 or 0)
+
 ### Preliminaries
 
 ``` r
@@ -88,7 +105,7 @@ library(funModeling)
 
 ``` r
 library(tidyverse)
-head(heart_disease,5)  
+head(heart_disease,5) 
 ```
 
     ##   age gender chest_pain resting_blood_pressure serum_cholestoral
@@ -115,6 +132,71 @@ head(heart_disease,5)
     ## 3               yes
     ## 4                no
     ## 5                no
+
+``` r
+str(heart_disease)
+```
+
+    ## 'data.frame':    303 obs. of  16 variables:
+    ##  $ age                   : int  63 67 67 37 41 56 62 57 63 53 ...
+    ##  $ gender                : Factor w/ 2 levels "female","male": 2 2 2 2 1 2 1 1 2 2 ...
+    ##  $ chest_pain            : Factor w/ 4 levels "1","2","3","4": 1 4 4 3 2 2 4 4 4 4 ...
+    ##  $ resting_blood_pressure: int  145 160 120 130 130 120 140 120 130 140 ...
+    ##  $ serum_cholestoral     : int  233 286 229 250 204 236 268 354 254 203 ...
+    ##  $ fasting_blood_sugar   : Factor w/ 2 levels "0","1": 2 1 1 1 1 1 1 1 1 2 ...
+    ##  $ resting_electro       : Factor w/ 3 levels "0","1","2": 3 3 3 1 3 1 3 1 3 3 ...
+    ##  $ max_heart_rate        : int  150 108 129 187 172 178 160 163 147 155 ...
+    ##  $ exer_angina           : int  0 1 1 0 0 0 0 1 0 1 ...
+    ##  $ oldpeak               : num  2.3 1.5 2.6 3.5 1.4 0.8 3.6 0.6 1.4 3.1 ...
+    ##  $ slope                 : int  3 2 2 3 1 1 3 1 2 3 ...
+    ##  $ num_vessels_flour     : int  0 3 2 0 0 0 2 0 1 0 ...
+    ##  $ thal                  : Factor w/ 3 levels "3","6","7": 2 1 3 1 1 1 1 1 3 3 ...
+    ##  $ heart_disease_severity: int  0 2 1 0 0 0 3 0 2 1 ...
+    ##  $ exter_angina          : Factor w/ 2 levels "0","1": 1 2 2 1 1 1 1 2 1 2 ...
+    ##  $ has_heart_disease     : Factor w/ 2 levels "no","yes": 1 2 2 1 1 1 2 1 2 2 ...
+
+``` r
+summary(heart_disease)
+```
+
+    ##       age           gender    chest_pain resting_blood_pressure
+    ##  Min.   :29.00   female: 97   1: 23      Min.   : 94.0         
+    ##  1st Qu.:48.00   male  :206   2: 50      1st Qu.:120.0         
+    ##  Median :56.00                3: 86      Median :130.0         
+    ##  Mean   :54.44                4:144      Mean   :131.7         
+    ##  3rd Qu.:61.00                           3rd Qu.:140.0         
+    ##  Max.   :77.00                           Max.   :200.0         
+    ##                                                                
+    ##  serum_cholestoral fasting_blood_sugar resting_electro max_heart_rate 
+    ##  Min.   :126.0     0:258               0:151           Min.   : 71.0  
+    ##  1st Qu.:211.0     1: 45               1:  4           1st Qu.:133.5  
+    ##  Median :241.0                         2:148           Median :153.0  
+    ##  Mean   :246.7                                         Mean   :149.6  
+    ##  3rd Qu.:275.0                                         3rd Qu.:166.0  
+    ##  Max.   :564.0                                         Max.   :202.0  
+    ##                                                                       
+    ##   exer_angina        oldpeak         slope       num_vessels_flour
+    ##  Min.   :0.0000   Min.   :0.00   Min.   :1.000   Min.   :0.0000   
+    ##  1st Qu.:0.0000   1st Qu.:0.00   1st Qu.:1.000   1st Qu.:0.0000   
+    ##  Median :0.0000   Median :0.80   Median :2.000   Median :0.0000   
+    ##  Mean   :0.3267   Mean   :1.04   Mean   :1.601   Mean   :0.6722   
+    ##  3rd Qu.:1.0000   3rd Qu.:1.60   3rd Qu.:2.000   3rd Qu.:1.0000   
+    ##  Max.   :1.0000   Max.   :6.20   Max.   :3.000   Max.   :3.0000   
+    ##                                                  NA's   :4        
+    ##    thal     heart_disease_severity exter_angina has_heart_disease
+    ##  3   :166   Min.   :0.0000         0:204        no :164          
+    ##  6   : 18   1st Qu.:0.0000         1: 99        yes:139          
+    ##  7   :117   Median :0.0000                                       
+    ##  NA's:  2   Mean   :0.9373                                       
+    ##             3rd Qu.:2.0000                                       
+    ##             Max.   :4.0000                                       
+    ## 
+
+``` r
+sum(is.na(heart_disease))
+```
+
+    ## [1] 6
 
 ``` r
 heart_disease_orig <- heart_disease
