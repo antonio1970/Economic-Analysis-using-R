@@ -115,6 +115,96 @@ str(gdf1)
     ##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
     ##  $ gdpPercap: num  779 821 853 836 740 ...
 
+### Description of the dataset
+
+``` r
+summary(gdf1)
+```
+
+    ##         country          year           pop               continent  
+    ##  Afghanistan:  12   Min.   :1952   Min.   :6.001e+04   Africa  :618  
+    ##  Albania    :  12   1st Qu.:1967   1st Qu.:2.783e+06   Americas:300  
+    ##  Algeria    :  12   Median :1980   Median :7.024e+06   Asia    :396  
+    ##  Angola     :  12   Mean   :1980   Mean   :2.968e+07   Europe  :360  
+    ##  Argentina  :  12   3rd Qu.:1996   3rd Qu.:1.972e+07   Oceania : 24  
+    ##  Australia  :  12   Max.   :2007   Max.   :1.319e+09                 
+    ##  (Other)    :1626                                                    
+    ##     lifeExp        gdpPercap       
+    ##  Min.   :23.60   Min.   :   241.2  
+    ##  1st Qu.:48.25   1st Qu.:  1198.0  
+    ##  Median :60.81   Median :  3544.4  
+    ##  Mean   :59.51   Mean   :  7234.1  
+    ##  3rd Qu.:70.85   3rd Qu.:  9349.0  
+    ##  Max.   :82.60   Max.   :113523.1  
+    ## 
+
+``` r
+anyNA(gdf1)
+```
+
+    ## [1] FALSE
+
+``` r
+names(gdf1)
+```
+
+    ## [1] "country"   "year"      "pop"       "continent" "lifeExp"   "gdpPercap"
+
+``` r
+nrow(gdf1)
+```
+
+    ## [1] 1698
+
+``` r
+colnames(gdf1)
+```
+
+    ## [1] "country"   "year"      "pop"       "continent" "lifeExp"   "gdpPercap"
+
+``` r
+# A more elegant way to inspect the dataset
+library(funModeling)
+```
+
+    ## Warning: package 'funModeling' was built under R version 3.6.1
+
+    ## Loading required package: Hmisc
+
+    ## Warning: package 'Hmisc' was built under R version 3.6.1
+
+    ## Loading required package: lattice
+
+    ## Loading required package: survival
+
+    ## Loading required package: Formula
+
+    ## Loading required package: ggplot2
+
+    ## Warning: package 'ggplot2' was built under R version 3.6.1
+
+    ## 
+    ## Attaching package: 'Hmisc'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     format.pval, units
+
+    ## funModeling v.1.8 :)
+    ## Examples and tutorials at livebook.datascienceheroes.com
+
+``` r
+df_status(gdf1)
+```
+
+    ##    variable q_zeros p_zeros q_na p_na q_inf p_inf    type unique
+    ## 1   country       0       0    0    0     0     0  factor    147
+    ## 2      year       0       0    0    0     0     0 integer     12
+    ## 3       pop       0       0    0    0     0     0 numeric   1698
+    ## 4 continent       0       0    0    0     0     0  factor      5
+    ## 5   lifeExp       0       0    0    0     0     0 numeric   1620
+    ## 6 gdpPercap       0       0    0    0     0     0 numeric   1698
+
 ### Manipulating dataframes
 
 ``` r
@@ -179,6 +269,10 @@ library(dplyr)
 
     ## 
     ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:Hmisc':
+    ## 
+    ##     src, summarize
 
     ## The following objects are masked from 'package:stats':
     ## 
