@@ -45,10 +45,12 @@ resettest(mod2)
 dwtest(mod2)
 bgtest(mod2)
 
+
 # Robust standard errors
 library(AER)
 coeftest(mod2)
 coeftest(mod2, vcov = vcovHC)
+
 # Diagnostic plots
 
 plot(mod2)
