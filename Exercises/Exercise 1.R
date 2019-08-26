@@ -16,4 +16,15 @@ prop.table (table(datos$Sex)) *100
 
 freq(datos, input = c('Sex', 'Sport'))
 
-     
+# Only use male sample, and using select for two variables
+
+datos_male <- subset (datos, Sex = "male")
+datos_male <- datos_male %>% select(Hg, Hc)     
+
+# report number of missing values per colums
+
+anyNA(datos_male)
+
+# descriptive statistics with R base
+summary(datos_male)
+df_status(datos_male)
