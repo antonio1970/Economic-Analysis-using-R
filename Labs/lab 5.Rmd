@@ -1,10 +1,119 @@
 ---
-title: "Lab 5: Using the ggplot package."
+title: "Lab 5: Basic plots and ggplot package."
 output: github_document
 ---
 
+### Basic plots using R base
 
-## Introduction
+- We will produce basic graphs in R using the dataset (auto.mpg). I am providing the slides and the full code which shows how to build up different plots with the basic syntax in R. It is assumed that you are familiar with descriptive statistics.
+
+
+### Reading the dataset
+
+```{r}
+#Check the structure of the dataset
+data.auto = read.csv('../Labs/data/auto-mpg.csv')
+head(data.auto)
+attach(data.auto)
+```
+
+### Number of cylinders as a categorical variable (factor in R)
+
+```{r}
+str(cylinders)
+cylinders = factor(cylinders,
+levels = c(3,4,5, 6, 8),
+labels = c('3cyl', '4cyl', '5cyl', '6cyl', '8cyl'))
+head(cylinders)
+```
+
+
+### Histogram
+
+```{r}
+hist(acceleration, probability = TRUE)
+```
+
+Let us try to refine the histogram by changing some options
+
+```{r}
+hist(acceleration, 
+     main = 'Histogram of accelaration',
+     xlab = 'Acceleration',
+     col = 'blue')
+```
+
+We can also choose the number of break points in hist() as follows:
+
+
+```{r}
+hist(acceleration, 
+     main = 'Histogram of accelaration',
+     xlab = 'Acceleration',
+     col = 'blue',
+     breaks = 16)
+```
+
+
+### Fitting a density function
+
+```{r}
+hist(mpg, breaks = 16, prob = T)
+lines(density(mpg))
+```
+
+
+
+
+###  Box plot
+```{r}
+boxplot(mpg, xlab = "Consumption")
+boxplot(mpg ~ model_year, xlab = "Millas por Galeón (por año)")
+boxplot(mpg ~ cylinders, xlab = "Consumo por Número de cilindros")
+boxplot(data.auto)
+```
+
+### Simple Scatter Plot
+
+```{r}
+plot(mpg ~ acceleration, col ='green')
+```
+
+### Fitting a simple regression model
+
+```{r}
+plot(mpg ~ horsepower)
+linearmodel <- lm(mpg ~ horsepower)
+abline(linearmodel)
+```
+
+### Scatterplot matrices
+
+We can also create scatter plot matrices with the pairs() function.
+
+```{r}
+pairs(~mpg + horsepower + weight + acceleration, col ='green')
+```
+
+## Combination of plots with par ()
+
+```{r warning=FALSE}
+old.par <- par()
+old.par
+par(mfrow = c(1,2))
+with(data.auto, {
+  plot(mpg ~ weight, main = "Weight vs Consumption")
+  plot(mpg ~ acceleration, main = "Acceleration vs Consumption")
+}
+)
+par(old.par)
+```
+
+
+
+
+
+## Introduction to ggplot
 
 R provides excellent graphing capabilities with pacakges such as **lattice** and **ggplot2**.
 
