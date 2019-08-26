@@ -64,6 +64,31 @@ sqrt(b)
 ```
 
 
+### More options
+
+
+```{r decimals}
+# We can use the command options digits to set up the number of decimals as you wish
+options(digits = 3)
+sqrt(10)
+ceiling(3.5) # round up to next integer
+floor(3.5) # round down to the next integer
+log(100)  # natural log
+exp(2)  # exponents
+```
+
+You can also test for equality. True and false are the keywords. Notice that T and F are synonyms but are discouraged.
+TRUE 
+FALSE
+
+```{r}
+1==2 # Equality return TRUE if equal
+1 !=2 # Return false if unequal
+10 >= 9  # Greater than
+4<=1 # Less than
+```
+
+
 ### Objects and basic R
 
 R is a oriented object language. For R, everything is an object, and each object has its own name.
