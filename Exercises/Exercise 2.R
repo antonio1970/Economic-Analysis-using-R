@@ -15,3 +15,10 @@ boxplot(datos_male$Hc, col = "Red",
 
 boxplot.stats(datos_male$Hg)$out
 boxplot.stats(datos_male$Hc)$out
+
+# Scatter plot of both variables
+
+plot(datos_male$Hg, datos_male$Hc, 
+     main = "HEMAGLOBIN and HEMATOCRIT relationship",
+     xlab = "Hemaglobin",
+     ylab = "Hematocrit (%)", col = "green")
