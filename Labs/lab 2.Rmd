@@ -100,4 +100,23 @@ library(dplyr)
 czech.table = tbl_df(gdf1[gdf1$country == 'Czech Republic', c('year', 'lifeExp', 'pop')])
 czech.table
 ```
+### Other type of datasets
+```{r}
+library(readr)
+df_csv   = read_csv("Comma Separated Values.csv")
+
+```
+
+```{r}
+library(haven) # Not from R base. Package = haven
+df_stata = read_dta("Stata File.dta") ## some Stata dataset
+df_spss  = read_spss("SPSS File.sav") ## For instance the European Social Survey or General Social Survey
+```
+
+```{r}
+library(readxl)
+df_excel = read_excel("Excel Spreadsheet.xlsx")
+```
+
+RStudio Alternative: “File” Menu > “Import Dataset”
 
