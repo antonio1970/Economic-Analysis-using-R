@@ -1,7 +1,404 @@
-Lab 2: Reading data and exploratory data analysis
+Lab 2: Data types and Reading data
 ================
 
-### Introduction
+Introduction
+------------
+
+There are several data types in R. The four main types of data.
+
+-   Lists
+-   Vectors
+-   Matrices
+-   Data frames
+
+``` r
+###Vectors contain similar elements. It can be numeric or characters#####
+###The simplest way to create a vector is to use the function c () combine####
+b = c(1, 3, 2, 6)
+class(b)
+```
+
+    ## [1] "numeric"
+
+``` r
+### Alternatively, we can create a vector of the characters with the name of European cities####
+cities = c('Madrid', 'London', 'Ostrava', 'Pekin', 'Barcelona')
+class(cities)
+```
+
+    ## [1] "character"
+
+``` r
+###We can also check the length of the vector by using the lenght () function
+length(b)  # It contains 4 observation, 4 elements. It determines the number of elements in the vector
+```
+
+    ## [1] 4
+
+``` r
+### In the case of a character vector, we need to use the nchar () function to count the number of characters of each element
+nchar(cities)  #
+```
+
+    ## [1] 6 6 7 5 9
+
+Dataframes
+----------
+
+Sometimes data require more complex storage than simple vectors and thankfully R provides a host of data structures. The most common are *the data.frame*, matrix, list, and vectors. Perhaps, the data frame will be most familar to anyone who has used Excel spreadsheet.
+
+Learning outcomes
+-----------------
+
+-   Understand what a dataframe is
+-   Know how to access to any element of the dataframe
+-   Practice with a very simple dataframe
+
+Data.frames
+-----------
+
+The structure of the data.frame is similar to an Excel spreadsheet. Each column represents a variable, and each row is an observation. Data frames might contain different types of data (numeric, character, logical, etc)
+
+``` r
+#Load the sample dataset: USArrests
+data(USArrests)
+USArrests
+```
+
+    ##                Murder Assault UrbanPop Rape
+    ## Alabama          13.2     236       58 21.2
+    ## Alaska           10.0     263       48 44.5
+    ## Arizona           8.1     294       80 31.0
+    ## Arkansas          8.8     190       50 19.5
+    ## California        9.0     276       91 40.6
+    ## Colorado          7.9     204       78 38.7
+    ## Connecticut       3.3     110       77 11.1
+    ## Delaware          5.9     238       72 15.8
+    ## Florida          15.4     335       80 31.9
+    ## Georgia          17.4     211       60 25.8
+    ## Hawaii            5.3      46       83 20.2
+    ## Idaho             2.6     120       54 14.2
+    ## Illinois         10.4     249       83 24.0
+    ## Indiana           7.2     113       65 21.0
+    ## Iowa              2.2      56       57 11.3
+    ## Kansas            6.0     115       66 18.0
+    ## Kentucky          9.7     109       52 16.3
+    ## Louisiana        15.4     249       66 22.2
+    ## Maine             2.1      83       51  7.8
+    ## Maryland         11.3     300       67 27.8
+    ## Massachusetts     4.4     149       85 16.3
+    ## Michigan         12.1     255       74 35.1
+    ## Minnesota         2.7      72       66 14.9
+    ## Mississippi      16.1     259       44 17.1
+    ## Missouri          9.0     178       70 28.2
+    ## Montana           6.0     109       53 16.4
+    ## Nebraska          4.3     102       62 16.5
+    ## Nevada           12.2     252       81 46.0
+    ## New Hampshire     2.1      57       56  9.5
+    ## New Jersey        7.4     159       89 18.8
+    ## New Mexico       11.4     285       70 32.1
+    ## New York         11.1     254       86 26.1
+    ## North Carolina   13.0     337       45 16.1
+    ## North Dakota      0.8      45       44  7.3
+    ## Ohio              7.3     120       75 21.4
+    ## Oklahoma          6.6     151       68 20.0
+    ## Oregon            4.9     159       67 29.3
+    ## Pennsylvania      6.3     106       72 14.9
+    ## Rhode Island      3.4     174       87  8.3
+    ## South Carolina   14.4     279       48 22.5
+    ## South Dakota      3.8      86       45 12.8
+    ## Tennessee        13.2     188       59 26.9
+    ## Texas            12.7     201       80 25.5
+    ## Utah              3.2     120       80 22.9
+    ## Vermont           2.2      48       32 11.2
+    ## Virginia          8.5     156       63 20.7
+    ## Washington        4.0     145       73 26.2
+    ## West Virginia     5.7      81       39  9.3
+    ## Wisconsin         2.6      53       66 10.8
+    ## Wyoming           6.8     161       60 15.6
+
+``` r
+# You can also make quick changes in the dataset with the fix () command
+fix(USArrests) # editing your dataset. Similar to the edit command in Stata
+```
+
+``` r
+knitr::include_graphics("fixcommand.png")
+```
+
+<img src="fixcommand.png" width="300px" />
+
+Basic operations with data.frames
+---------------------------------
+
+``` r
+nrow(USArrests) ## Number of rows. Number of observations = 50 US states
+```
+
+    ## [1] 50
+
+``` r
+ncol(USArrests) ## Number of variables in the dataset.  4 variables
+```
+
+    ## [1] 4
+
+``` r
+## Alternatively, 
+dim(USArrests) ## Number of rows and columns of our dataset. with dimension function. 
+```
+
+    ## [1] 50  4
+
+Basic operations with data.frames
+---------------------------------
+
+``` r
+names(USArrests) ## names of the variables in the dataset
+```
+
+    ## [1] "Murder"   "Assault"  "UrbanPop" "Rape"
+
+``` r
+colnames(USArrests)  ## checking the names of the variables
+```
+
+    ## [1] "Murder"   "Assault"  "UrbanPop" "Rape"
+
+``` r
+#These functions return a character vector listing the columns 
+names(USArrests)[1] ##We pick up the first element of the vector
+```
+
+    ## [1] "Murder"
+
+``` r
+# The same logic applies to the rows of our dataset
+
+rownames(USArrests) ## Checking the row names
+```
+
+    ##  [1] "Alabama"        "Alaska"         "Arizona"        "Arkansas"      
+    ##  [5] "California"     "Colorado"       "Connecticut"    "Delaware"      
+    ##  [9] "Florida"        "Georgia"        "Hawaii"         "Idaho"         
+    ## [13] "Illinois"       "Indiana"        "Iowa"           "Kansas"        
+    ## [17] "Kentucky"       "Louisiana"      "Maine"          "Maryland"      
+    ## [21] "Massachusetts"  "Michigan"       "Minnesota"      "Mississippi"   
+    ## [25] "Missouri"       "Montana"        "Nebraska"       "Nevada"        
+    ## [29] "New Hampshire"  "New Jersey"     "New Mexico"     "New York"      
+    ## [33] "North Carolina" "North Dakota"   "Ohio"           "Oklahoma"      
+    ## [37] "Oregon"         "Pennsylvania"   "Rhode Island"   "South Carolina"
+    ## [41] "South Dakota"   "Tennessee"      "Texas"          "Utah"          
+    ## [45] "Vermont"        "Virginia"       "Washington"     "West Virginia" 
+    ## [49] "Wisconsin"      "Wyoming"
+
+``` r
+rownames(USArrests)[50]  ## Selecting Wyoming state
+```
+
+    ## [1] "Wyoming"
+
+Simple inspection of the dataframe
+==================================
+
+We can also print out the first part or the last part of the dataframe to have an idea how it looks like. For that purpose, we employ the *head ()* and *tail ()* functions. **These functions can be used not only for data.frames but also for vectors, lists**.
+
+``` r
+head(USArrests)  # Display the first 6 rows in the dataset
+```
+
+    ##            Murder Assault UrbanPop Rape
+    ## Alabama      13.2     236       58 21.2
+    ## Alaska       10.0     263       48 44.5
+    ## Arizona       8.1     294       80 31.0
+    ## Arkansas      8.8     190       50 19.5
+    ## California    9.0     276       91 40.6
+    ## Colorado      7.9     204       78 38.7
+
+``` r
+head(USArrests, 4)  #Display the first 4 rows in the dataset
+```
+
+    ##          Murder Assault UrbanPop Rape
+    ## Alabama    13.2     236       58 21.2
+    ## Alaska     10.0     263       48 44.5
+    ## Arizona     8.1     294       80 31.0
+    ## Arkansas    8.8     190       50 19.5
+
+``` r
+tail(USArrests)  # Display the last 6 rows of our dataset
+```
+
+    ##               Murder Assault UrbanPop Rape
+    ## Vermont          2.2      48       32 11.2
+    ## Virginia         8.5     156       63 20.7
+    ## Washington       4.0     145       73 26.2
+    ## West Virginia    5.7      81       39  9.3
+    ## Wisconsin        2.6      53       66 10.8
+    ## Wyoming          6.8     161       60 15.6
+
+``` r
+# For instance, let us create a numerical vector
+x = c(1,2,3,4,5,6, 7, 8, 9, 10)
+head(x)  ## it returns the first 6 elements of the vector
+```
+
+    ## [1] 1 2 3 4 5 6
+
+The str function
+----------------
+
+The str function is one of the most useful in R. It provides you with lot of information about the structure of the object. It can be applied for **data.frames**, **vectors**, **lists**, and **matrices**.
+
+``` r
+str(USArrests)  ## it provides you with information about observations, variables, type of variables, and the values of each column
+```
+
+    ## 'data.frame':    50 obs. of  4 variables:
+    ##  $ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
+    ##  $ Assault : num  236 263 294 190 276 204 110 238 335 211 ...
+    ##  $ UrbanPop: num  58 48 80 50 91 78 77 72 80 60 ...
+    ##  $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...
+
+Manipulating data.frames
+------------------------
+
+Each column of the dataframe is an individual vector, and it can be accessed individually and each column has its own class.
+
+The easiest way to get access to one of the columns of the dataframe is by using the dollar operator ($)
+
+``` r
+USArrests$Murder  ## we get the murder variable, the first column
+```
+
+    ##  [1] 13.2 10.0  8.1  8.8  9.0  7.9  3.3  5.9 15.4 17.4  5.3  2.6 10.4  7.2
+    ## [15]  2.2  6.0  9.7 15.4  2.1 11.3  4.4 12.1  2.7 16.1  9.0  6.0  4.3 12.2
+    ## [29]  2.1  7.4 11.4 11.1 13.0  0.8  7.3  6.6  4.9  6.3  3.4 14.4  3.8 13.2
+    ## [43] 12.7  3.2  2.2  8.5  4.0  5.7  2.6  6.8
+
+``` r
+length(USArrests$Murder)  ## Number of observations = 50
+```
+
+    ## [1] 50
+
+Manipulating dataframes
+-----------------------
+
+Similar to vectors, dataframes allow us to access individual elements by their position in square brackets. Two positions must be specified. The first one is the row number, and the second one is the column number. Here we go with some examples
+
+``` r
+USArrests[3,2]  ##Third row from the second column
+```
+
+    ## [1] 294
+
+``` r
+USArrests [, 3]  ## Only the third column and all rows
+```
+
+    ##  [1] 58 48 80 50 91 78 77 72 80 60 83 54 83 65 57 66 52 66 51 67 85 74 66
+    ## [24] 44 70 53 62 81 56 89 70 86 45 44 75 68 67 72 87 48 45 59 80 80 32 63
+    ## [47] 73 39 66 60
+
+``` r
+USArrests[, 'UrbanPop']  ## Using the name of the column (variable)
+```
+
+    ##  [1] 58 48 80 50 91 78 77 72 80 60 83 54 83 65 57 66 52 66 51 67 85 74 66
+    ## [24] 44 70 53 62 81 56 89 70 86 45 44 75 68 67 72 87 48 45 59 80 80 32 63
+    ## [47] 73 39 66 60
+
+``` r
+USArrests[50, ]  ## All of row 50, all variables
+```
+
+    ##         Murder Assault UrbanPop Rape
+    ## Wyoming    6.8     161       60 15.6
+
+Creating your own dataframe
+---------------------------
+
+Let us create our own dataset in R. By rows, we will get individuals, and by columns the variables. We have got information about the age of respondents, sex, and the number of minutes on the phone. As usual, we use the c() function to create vectors.
+
+``` r
+# Use the c() function to create vectors. 
+#Notice that we do not mix the type of data into the vectors (numerical or characters)
+
+sex = c("M","H","H","M","M","H","M","M","H","H")
+age= c(22, 34, 29, 25, 30, 33, 31, 27, 25, 25)
+time = c(14.21, 10.36, 11.89, 13.81, 12.03, 10.99, 12.48, 13.37, 12.29, 11.92)
+```
+
+``` r
+mydata = data.frame(age, sex, time)
+str(mydata) 
+```
+
+    ## 'data.frame':    10 obs. of  3 variables:
+    ##  $ age : num  22 34 29 25 30 33 31 27 25 25
+    ##  $ sex : Factor w/ 2 levels "H","M": 2 1 1 2 2 1 2 2 1 1
+    ##  $ time: num  14.2 10.4 11.9 13.8 12 ...
+
+``` r
+#To check that it is a datframe with 3 variables and 10 observations. Two variables are numeric, and sex is a categorial variable (factor in R)
+
+# Please check the help for data.frame() in R, ?c
+```
+
+Attach command
+--------------
+
+But the possibilities of creating many errors when using attach are numerous. Referring to the variables in the above dataframe requires the use of the dollar sign, that is, $age, or $sex.
+
+The command attach allows you to do away with the name of the dataframe and the dollar symbol when referring to the same data.
+
+``` r
+attach(mydata)
+```
+
+    ## The following objects are masked _by_ .GlobalEnv:
+    ## 
+    ##     age, sex, time
+
+``` r
+age
+```
+
+    ##  [1] 22 34 29 25 30 33 31 27 25 25
+
+One problem with that is that you might have other objects in memory with the same name. In that sense, it is easy to mix up objects
+
+Subset command
+--------------
+
+The subset function allows us to select observations and variables. In this case, we are going to create two different data frames: one for males and the other for females.
+
+``` r
+males = subset (mydata, sex =='H')  ## Only for males
+males
+```
+
+    ##    age sex  time
+    ## 2   34   H 10.36
+    ## 3   29   H 11.89
+    ## 6   33   H 10.99
+    ## 9   25   H 12.29
+    ## 10  25   H 11.92
+
+``` r
+females = subset (mydata, sex =='M')  ## Only for females
+females
+```
+
+    ##   age sex  time
+    ## 1  22   M 14.21
+    ## 4  25   M 13.81
+    ## 5  30   M 12.03
+    ## 7  31   M 12.48
+    ## 8  27   M 13.37
+
+### Reading data (some examples)
 
 ``` r
 # Reading data from a csv file
@@ -34262,3 +34659,35 @@ czech.table
     ## 10  1997    74.0 10300707
     ## 11  2002    75.5 10256295
     ## 12  2007    76.5 10228744
+
+### Other type of datasets
+
+``` r
+library(readr) # from the tidyverse package 
+df_csv   = read_csv2("http://freakonometrics.free.fr/countries.csv") # cvs_2 use semi-colon as separator, by default header = TRUE
+```
+
+    ## Using ',' as decimal and '.' as grouping mark. Use read_delim() for more control.
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   Country = col_character(),
+    ##   `Interational Direct Dial (IDD) Code` = col_character(),
+    ##   `ISO 3166` = col_character(),
+    ##   `Car Code` = col_character(),
+    ##   Capital = col_character(),
+    ##   Currency = col_character(),
+    ##   `ISO Currency` = col_character(),
+    ##   Digraph = col_character(),
+    ##   ICAO = col_character(),
+    ##   Language = col_character(),
+    ##   `ISO 639` = col_character()
+    ## )
+
+You can also read stata, SAS and SPSS files by using `haven`package.
+
+``` r
+??haven
+```
+
+    ## starting httpd help server ... done
