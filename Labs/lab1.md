@@ -170,6 +170,18 @@ mean(mpg) # there is no need to use the dollar symbol
 
     ## [1] 20.1
 
+### Working directory
+
+``` r
+getwd() # to check your current working directory
+```
+
+    ## [1] "C:/Users/anton/OneDrive/Escritorio/Economic-Analysis-using-R/Economic-Analysis-using-R/Labs"
+
+``` r
+# setwd() # You can also use the menu  session and then set working directory, otherwise you need to specify the entire path
+```
+
 ### Packages
 
 R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
@@ -181,7 +193,7 @@ install.packages("tidyverse", repos='http://cran.us.r-project.org')
     ## package 'tidyverse' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmpeu9FUC\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpATRNzA\downloaded_packages
 
 ``` r
 install.packages("skimr", repos='http://cran.us.r-project.org')
@@ -190,7 +202,7 @@ install.packages("skimr", repos='http://cran.us.r-project.org')
     ## package 'skimr' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmpeu9FUC\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpATRNzA\downloaded_packages
 
 ``` r
 install.packages("wooldridge", repos='http://cran.us.r-project.org')
@@ -199,7 +211,7 @@ install.packages("wooldridge", repos='http://cran.us.r-project.org')
     ## package 'wooldridge' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\anton\AppData\Local\Temp\Rtmpeu9FUC\downloaded_packages
+    ##  C:\Users\anton\AppData\Local\Temp\RtmpATRNzA\downloaded_packages
 
 You've just installed two basic packages. We can also check it out by using the following syntax
 

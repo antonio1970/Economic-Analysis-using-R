@@ -1,0 +1,33 @@
+---
+title: "Hello, Tutorial!"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+```
+
+This code computes the answer to one plus one, change it so it computes two plus two:
+
+```{r addition, exercise=TRUE}
+1 + 1
+```
+This code lists the objects stored in your current session in RStudio, and get the working directory
+
+```{r list of objects, exercise = TRUE}
+ls()
+getwd()
+```
+
+This code does:
+
+- First, install WDI package if you do not have it. You can get further information from https://cran.r-project.org/web/packages/WDI/index.html
+
+- Then, load the WDI package with the library command
+
+
+```{r WDI package, exercise = TRUE}
+install.packages ("WDI", repos='http://cran.us.r-project.org')
+library(WDI)
+```

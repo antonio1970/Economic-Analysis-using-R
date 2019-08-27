@@ -104,9 +104,9 @@ rm(list = ls())
 ```
 
 
-Lastly, most of the them when using variables in a dataframe, you refer to them by using the `$`symbol. This can be avoided by using the `attach` command.
+Lastly, most of the them when using variables in a dataframe, you refer to them by using the `$`symbol. This can be avoided by using the `attach` command. This will be explained more in detail in next labs.
 
-Just as an example, let us load one of the built in datasets in R, and compute the gas consumption per mile.
+Just as an example, let us load one of the built in datasets in R, `mpg´ from the **ggplot2 package**. This dataset contains observations collected by the US Environmental Protection Agency on 38 models of cars. 
 
 ```{r}
 data(mtcars)
@@ -116,6 +116,12 @@ attach(mtcars)
 mean(mpg) # there is no need to use the dollar symbol
 ```
 
+### Working directory
+
+```{r}
+getwd() # to check your current working directory
+# setwd() # You can also use the menu  session and then set working directory, otherwise you need to specify the entire path
+```
 
 ### Packages
 R makes extensive use of third-party packages. We will not get into the details right now, but for this class, you will need to install a few of these. Installing packages is quite easy. Type the following two lines of code at the very top of your script:
@@ -141,6 +147,7 @@ Basically, you have downloaded them onto your laptop. Just like with other softw
 library(tidyverse) # one of the most famous R pacakge for data manipulation
 library(skimr)  # for data exploration
 library(wooldridge) # it refers to Wooldrige's undergraduate texbook
+library(learnr) # it refers to interactive tutorials 
 ```
 
 Whenever you start over a new Rstudio session, you need to load the approrpiate libraries.
