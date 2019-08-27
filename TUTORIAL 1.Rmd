@@ -31,3 +31,10 @@ This code does:
 install.packages ("WDI", repos='http://cran.us.r-project.org')
 library(WDI)
 ```
+
+This code gives you the exact reference for the WDI package
+
+```{r citation, exercise = TRUE}
+citation("WDI")
+```
+
