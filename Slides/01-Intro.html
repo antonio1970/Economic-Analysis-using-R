@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>Lecture 1: Introduction to R</title>
+    <title>Lecture 0: Introduction to the course</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Dr. Antonio Rodriguez Andres| Technical University of Ostrava" />
+    <meta name="author" content="Dr. Antonio Rodriguez Andres| Technical University of Ostrava (VSB-TU)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
@@ -12,14 +12,14 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Lecture 1: Introduction to R
+# Lecture 0: Introduction to the course
 ## <html>
 <div style="float:left">
 
 </div>
 <hr color='#EB811B' size=1px width=796px>
 </html>
-### Dr. Antonio Rodriguez Andres| Technical University of Ostrava
+### Dr. Antonio Rodriguez Andres| Technical University of Ostrava (VSB-TU)
 ### Economic Analysis Using R (EAR)
 
 ---
@@ -48,24 +48,24 @@ name: syllabus
 
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
 
-(Read the full document [here](https://github.com/uo-ec607/syllabus/blob/master/syllabus.pdf).)
+(Read the full document [here](https://github.com/antonio1970/Economic-Analysis-using-R/tree/master/Syllabus).)
 
 ---
 
 # Why this course?
 
-Fill in the gaps left by traditional econometrics and methods classes using less flexible econometrics packages.
+Fill in the gaps left by traditional econometrics and methods classes using less flexible econometrics and statistical packages.
 
-- Practical skills that tools that will benefit your dissertation and future career.
+- Practical skills that tools that will benefit your dissertation (master or doctoral) and future professional career.
 - Neglected skills like how to actually find datasets in the wild and clean them.
 
 Data science skills are largely distinct from (and complementary to) the core 'metrics oeuvre familiar to economists.
 
-- Data viz, cleaning and wrangling; programming; cloud computation; relational databases; machine learning; etc.
+- Data viz, cleaning and wrangling; programming; cloud computation; relational databases; machine learning basics; etc.
 
 --
 
-&gt; *"In short, we will cover things that I wish someone had taught me when I was starting out in graduate
+&gt; *"In short, we will cover things that I wish someone had taught me when I was starting out in graduate 
 school."*
 
 ---
@@ -81,53 +81,49 @@ school."*
 
 | Component                           | Weight |
 |:-|-:|
-| 5 × homework assignments (15% each) | 75% |
-| 2 × short presentations (5% each)		| 10% |
-| 1 × peer-review						          | 10% |
-|	In-class participation						  | 5%  |
+| 2 × homework assignments (15% each) | 30% |
+| 1 × research project            		| 60% |
+|	In-class participation						  | 10% |
 
 - You can swap out one homework assignment for an (approved) final presentation of your own research.
-- Short presentations summarize either a key lecture reading, or an (approved) software package/platform.
-- We'll get to peer-review later in the course.
+- We'll get to research project later in the course.
+
+### Research project
+
+- Your final research project will be an analysis in which you apply some techniques covered during the course. 
+
+- Your research project should look like such as this R markdown `template`: (Read the full document [here]: (https://github.com/antonio1970/Economic-Analysis-using-R/tree/master/Template%20research%20project).)
+
+- You can also have a flavour of potential research projects (maybe beyond the course material (see next slide)
+---
+# Grading (cont.)
+### Research project examples
+
+- Globalization and suicide: (See the full code and data [here](https://www.kaggle.com/tony75/globalization-and-suicide))
+- Predicting the Body Mass Index (BMI). (See the full code and data [here](https://www.kaggle.com/tony75/predicting-bmi))
+- Missing values and Clustering: Knowledge Economy in African countries. This is beyond the scope of this course, but it might relevant for data cleaning, and description analysis: (See the full code and data [here](https://github.com/antonio1970/Clustering-Algorithms))
 
 ---
 # Lecture outline
 
-### Data science basics
+### Introduction to R basics
 
 - Introduction: Motivation, software installation, and data visualization
 - Version control with Git(Hub)
 - Learning to love the shell
 - R language basics
-- Data cleaning and wrangling with the "Tidyverse"
-- Webscraping: (1) Server-side and CSS
-- Webscraping: (2) Client-side and APIs
+- Data cleaning, and wrangling with the "Tidyverse"
 
-### Analysis and programming
+
+### Statistical Analysis
 
 - Regression analysis in R
-- Spatial analysis in R
-- Functions in R: (1) Introductory concepts
-- Functions in R: (2) Advanced concepts
-- Parallel programming
+- Binary choice models in R
+- Count data models in R
+- Introduction to panel data models in R: the `plm` package
+- Generating reports with Rmarkdown
 
 ---
-# Lecture outline (cont.)
-
-### Scaling up: Big data and cloud computation
-
-- Docker
-- Cloud computing with Google Compute Engine
-- High performance computing (Talapas cluster) 
-- Databases: SQL(ite) and BigQuery
-- Spark
-- Machine learning: (1)
-- Machine learning: (2)... Or, student project presentations (demand dependent)
-- Peer-review and student project presentations (demand dependent)
-
----
-class: inverse, center, middle
-name: started
 
 # Getting started
 
@@ -145,7 +141,7 @@ name: started
 class: inverse, center, middle
 name: r4ds
 
-# R for data science
+# R for Economics analysis and data science
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
 
 ---
@@ -175,7 +171,7 @@ programming languages and APIs.
 - It's also the language that I know best.
 --
 
-- (Learning multiple languages is a good idea, though.)
+- (Learning multiple languages is a good idea, though.). The same tools are available in Matlab.
 
 ---
 
@@ -261,7 +257,7 @@ abline(fit, lwd = 2)
 
 ---
 
-# ggplot2
+# Examples using ggplot2
 
 
 ```r
@@ -272,43 +268,6 @@ ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
 ```
 
 &lt;img src="01-Intro_files/figure-html/gapm_plot-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-class: inverse, center, middle
-name: ggplot2
-
-# More ggplot2
-&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
-
----
-
-# Install and load
-
-Open up your laptops. For the remainder of this first lecture, we're going continue playing around with [ggplot2](https://ggplot2.tidyverse.org/) (i.e. livecoding).
-
-If you don't have them already, install the `ggplot2` and `gapminder` packages via either:
-- **Console:** Enter `install.packages(c("ggplot2", "gapminder"), dependencies=T)`.
-- **RStudio:** Click the "Packages" tab in the bottom-right window pane. Then click "Install" and search for these two packages.
-  
-![](pics/install.gif)
-
----
-
-# Install and load (cont.)
-
-Once the packages are installed, load them into your R session with the `library()` function.
-
-```r
-library(ggplot2)
-library(gapminder) ## Again, we're just using this package for its dataset
-```
-
-Notice too that you don't need quotes around the package names any more. Reason: R now recognises these packages as defined objects with given names. ("Everything in R is an object and everything has a name.")
-
---
-
-PS — A convenient way to combine the package installation and loading steps is with the [pacman package's](https://github.com/trinker/pacman) `p_load()` function. If you run `pacman::p_load(ggplot, gapminder)` it will first look to see whether it needs to install either package before loading them. Clever.
-- We'll get to this next week, but if you want to run a function from an (installed) package without loading it, you can use the `PACKAGE::package_function()` syntax.
 
 ---
 
@@ -338,303 +297,6 @@ gapminder
 ## # ... with 1,694 more rows
 ```
 
-
----
-
-# Elements of ggplot2
-
-[Hadley Wickham's](http://hadley.nz/) ggplot2 is one of the most popular packages in the entire R canon. 
-- It also happens to be built upon some deep visualization theory: i.e. Leland Wilkinson's [*The Grammar of Graphics*](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448).
-
-There's a lot to say about ggplot2's implementation of this "grammar of graphics" approach, but the three key elements are:
-
-1. Your plot ("the visualization") is linked to your variables ("the data") through various **aesthetic mappings**.
-
-2. Once the aesthetic mappings are defined, you can represent your data in different ways by choosing different **geoms** (i.e. "geometric objects" like points, lines or bars).
-
-3. You build your plot in **layers**.
-
---
-
-&lt;/br&gt;
-
-That's kind of abstract. Let's review each element in turn using our original plot call.
-
----
-
-# 1. Aesthetic mappings
-
-Here's our earlier ggplot2 code again:
-
-
-```r
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
-  geom_point()
-```
-
-Focus on the top line, which contains the initialising `ggplot()` function call. This function accepts various arguments, including:
-- Where the data come from (i.e. `data = gapminder`).
-- What the aesthetic mappings are (i.e. `mapping = aes(x = gdpPercap, y = lifeExp)`).
-
---
-
-The aesthetic mappings here are pretty simple: They just define an x-axis (GDP per capita) and a y-axis (life expecancy).
-- To get a sense of the power and flexibility that comes with this approach, however, consider what happens if we add more aesthetics to the plot call...
-
----
-
-# 1. Aesthetic mappings (cont.)
-
-
-```r
-ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, size = pop, col = continent)) + 
-  geom_point(alpha = 0.3) ## "alpha" controls transparency. Takes a value between 0 and 1.
-```
-
-&lt;img src="01-Intro_files/figure-html/aesthetics2-1.svg" style="display: block; margin: auto;" /&gt;
-
---
-
-Note that I've dropped the "mapping =" part of the ggplot call. Most people just start with "aes(...)", since `ggplot2` knows the order of the arguments.
-
----
-
-# 1. Aesthetic mappings (cont.)
-
-Note that we can assign the aesthetic mappings in the geom layer too.
-
-```r
-ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + ## Applicable to all geoms
-  geom_point(aes(size = pop, col = continent), alpha = 0.3) ## Applicable to this geom only
-```
-
-&lt;img src="01-Intro_files/figure-html/aesthetics3-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-# 1. Aesthetic mappings (cont.)
-
-Oops. What went wrong here?
-
-```r
-ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + 
-  geom_point(aes(size = "big", col="black"), alpha = 0.3)
-```
-
-&lt;img src="01-Intro_files/figure-html/aesthetics_mistake-1.svg" style="display: block; margin: auto;" /&gt;
-
---
-
-**Answer: **Aesthetics must be mapped to variables, not descriptions!
-
----
-
-# 1. Aesthetic mappings (cont.)
-
-At this point, instead of repeating the same ggplot2 call every time, it will prove convenient to define an intermediate plot object that we can re-use.
-
-
-```r
-p = ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp))
-p
-```
-
-&lt;img src="01-Intro_files/figure-html/p-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-# 2. Geoms
-
-Once your variable relationships have been defined by the aesthetic mappings, you can invoke and combine different geoms to generate different visulaizations.
-
-
-```r
-p + 
-  geom_point(alpha = 0.3)  +
-  geom_smooth(method = "loess") 
-```
-
-&lt;img src="01-Intro_files/figure-html/geoms1-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-# 2. Geoms (cont.)
-
-Aesthetics can be applied differentially across geoms.
-
-
-```r
-p + 
-  geom_point(aes(size = pop, col = continent), alpha = 0.3)  +
-  geom_smooth(method = "loess") 
-```
-
-&lt;img src="01-Intro_files/figure-html/geoms2-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-# 2. Geoms (cont.)
-
-The previous plot provides a good illustration of the power (or effect) that comes from assigning aesthetic mappings "globally" vs in the individual geom layers.
-- Compare: What happens if you run the below code chunk?
-
-
-```r
-ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, size = pop, col = continent)) +
-  geom_point(alpha = 0.3)  +
-  geom_smooth(method = "loess") 
-```
-
----
-
-# 2. Geoms (cont.)
-
-Similarly, note that some geoms only accept a subset of mappings. E.g. `geom_density()` doesn't know what to do with the "y" aesthetic mapping.
-
-
-```r
-p + geom_density()
-```
-
-```
-## Error: geom_density requires the following missing aesthetics: y
-```
-
-&lt;img src="01-Intro_files/figure-html/geoms4-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-# 2. Geoms (cont.)
-
-We can fix that by being more careful about how we build the plot.
-
-
-```r
-ggplot(data = gapminder) + ## i.e. No "global" aesthetic mappings"
-  geom_density(aes(x = gdpPercap, fill = continent), alpha=0.3)
-```
-
-&lt;img src="01-Intro_files/figure-html/geoms5-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-# 3. Build your plot in layers
-
-We've already seen how we can chain (or "layer") consecutive plot elements using the `+` connector.
-- The fact that we can create and then re-use an intermediate plot object (e.g. "p") is testament to this.
-
-But it bears repeating: You can build out some truly impressive complexity and transformation of your visualization through this simple layering process.
-- Note that you don't have to touch your original data; ggplot2 takes care of all of that.
-- For example (see next slide for figure).
-
-
-```r
-p2 =
-  p + 
-  geom_point(aes(size = pop, col = continent), alpha = 0.3) +
-  scale_color_brewer(name = "Continent", palette = "Set1") + ## Different colour scale
-  scale_x_log10(labels = scales::dollar) + ## Switch to logarithmic scale on x-axis. Use dollar units.
-  scale_size(name = "Population", labels = scales::comma) +
-  labs(x = "Log (GDP per capita)", y = "Life Expectancy") + ## Better axis titles
-  theme_bw() ## Try a black and white plot theme
-```
-
----
-
-# 3. Build your plot in layers (cont.)
-
-&lt;img src="01-Intro_files/figure-html/layers2-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-# What else?
-
-We have barely scratched the surface of ggplot2's functionality... let alone talked about the entire ecosystem of packages that has been built around it. 
-- Here's are two quick additional examples to whet your appetite
-
---
-
-Note that you will need to install and load some additional packages if you want to recreate the next two figures on your own machine. A quick way to do this:
-
-
-```r
-if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```
-## Warning: package 'pacman' was built under R version 3.6.1
-```
-
-```r
-pacman::p_load(hrbrthemes, gganimate)
-```
-
----
-
-# What else? (cont.)
-
-Simple extension: Use an external package theme.
-
-```r
-# library(hrbrthemes)
-p2 + theme_ipsum()
-```
-
-```
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-```
-
-```
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
-## x$y, : font family not found in Windows font database
-```
-
-```
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-```
-
-&lt;img src="01-Intro_files/figure-html/ipsum_theme-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -668,21 +330,16 @@ ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
 
 There's a lot more to say, but I think we'll stop now for today's lecture.
 
-We also haven't touched on ggplot2's relationship to "tidy" data.
-  - It actually forms part of a suite of packages collectively known as the [tidyverse](https://www.tidyverse.org/). 
-  - We will get back to this in Lecture 5.
-
 Rest assured, you will be using ggplot2 throughout the rest of this course and developing your skills along the way.
-- Your very first assignment (coming up) is a chance specifically to hone some of those skills.
 
 In the meantime, I want you to do some reading and practice on your own. Pick either of the following (or choose among the litany of online resources) and work through their examples:
-- [Chapter 3](https://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science* by Hadley Wickham and Garett Grolemund.
-- [Chapter 3](https://socviz.co/makeplot.html#how-ggplot-works) of *Data Visualization: A Practical Guide* by Kieran Healy. (Or just try a chapter at random.) 
+- [Chapter 1](https://www.jaredlander.com/r-for-everyone/table-of-contents/) of *R for Everyone: Advance and Analytics and Graphics* by Jared P. Lander.
+- [Chapter 1](https://r4ds.had.co.nz/introduction.html) of *R for Data Science* by G. Grolemund and H. Wickham. (Or just try a chapter at random.) 
 
 ---
 class: inverse, center, middle
 
-# Next lecture: Deep dive into Git(Hub).
+# Next lecture: R basics.
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
