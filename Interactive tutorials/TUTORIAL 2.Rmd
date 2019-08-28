@@ -1,0 +1,89 @@
+---
+title: "Tutorial 2: Descriptive statistics"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(shiny)
+```
+
+## Measures of central tendency
+
+Generate your own dataset with the list of numbers and compute the mean, median, and the trimmed mean (removing 10 % of the observations)
+
+```{r dataset, exercise = TRUE}
+datos <- c(-15, 2, 3, 4, 5, 6, 7, 8, 9, 12)
+print(datos)
+mean(datos)
+median(datos)
+mean(x = datos, trim = 0.1) # Notice that we remove 10 %
+```
+
+Try to compute the mean using a simple code for the previous numeric vector
+
+```{r mean, exercise = TRUE}
+# We divide the output of summation by the number of elements 
+```
+
+```{r mean-solution}
+sum(datos)/10
+```
+
+
+Let us calculate the mode, the most frequent value, what we can do is to count the number of times on which each gender appears on the sample. The core R packages do not have a function for calculating the mode.
+
+```{r mode, exercise = TRUE, message=FALSE}
+library(funModeling)
+head (heart_disease, 3)
+# Compute the most frquent gender in the sample
+```
+
+```{r mode-solution}
+table(heart_disease$gender) # Males are more frequent in our sample
+```
+
+
+## Measures of variability
+
+We want to know how spread out are the data. Let us compute the range, interquartile range, and variance.
+
+```{r variability, exercise = TRUE}
+data(mtcars)
+min(mtcars$mpg)
+max(mtcars$mpg)
+range(mtcars$mpg)
+```
+
+
+Let use the quantile function
+
+```{r quantile, exercise = TRUE}
+
+```
+
+
+### Quiz
+
+*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+
+Some questions to verify that you understand the purposes of various base and recommended R packages:
+
+```{r quiz}
+quiz(
+  question("Which package contains functions for installing other R packages?",
+    answer("base"),
+    answer("tools"),
+    answer("utils", correct = TRUE),
+    answer("codetools")
+  ),
+  question("Which of the R packages listed below are used to create plots?",
+    answer("lattice", correct = TRUE),
+    answer("tools"),
+    answer("stats"),
+    answer("grid", correct = TRUE)
+  )
+)
+```
+
