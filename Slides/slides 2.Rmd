@@ -1,0 +1,96 @@
+---
+title: "Presentation Ninja"
+subtitle: "⚔<br/>with xaringan"
+author: "Yihui Xie"
+institute: "RStudio, Inc."
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+# Data types
+
+There are several data types in R. The four main types of data.
+
+ - Lists
+ - Vectors
+ - Matrices
+ - Data frames
+
+```{r data types}
+###Vectors contain similar elements. It can be numeric or characters#####
+###The simplest way to create a vector is to use the function c () combine####
+b = c(1, 3, 2, 6)
+class(b)
+```
+
+```{r}
+### Alternatively, we can create a vector of the characters with the name of European cities####
+cities = c('Madrid', 'London', 'Ostrava', 'Pekin', 'Barcelona')
+class(cities)
+```
+
+---
+# Data types (cont..)
+
+
+```{r}
+###We can also check the length of the vector by using the lenght () function
+length(b)  # It contains 4 observation, 4 elements. It determines the number of elements in the vector
+
+### In the case of a character vector, we need to use the nchar () function to count the number of characters of each element
+nchar(cities)  #
+```
+---
+
+## Data frames
+
+--
+- Sometimes data require more complex storage than simple vectors and thankfully R provides a host of data structures. The most common are *the data.frame*, matrix, list, and vectors. Perhaps, the data frame will be most familar to anyone who has used Excel spreadsheet.
+
+- The structure of the data.frame is similar to an Excel spreadsheet. Each column represents a variable, and each row is an observation. Data frames might contain different types of data (numeric, character, logical, etc)
+
+
+```{r}
+#Load the sample dataset: USArrests
+data(USArrests)
+head( USArrests,5)
+# You can also make quick changes in the dataset with the fix () command
+fix(USArrests) # editing your dataset. Similar to the edit command in Stata
+```
+
+---
+## Data frames (cont..)
+
+### Basic operations with data.frames
+
+```{r}
+nrow(USArrests) ## Number of rows. Number of observations = 50 US states
+ncol(USArrests) ## Number of variables in the dataset.  4 variables
+## Alternatively, 
+dim(USArrests) ## Number of rows and columns of our dataset. with dimension function. 
+```
+---
+## Data frames (cont..)
+### Basic operations with data.frames
+
+```{r}
+names(USArrests) ## names of the variables in the dataset
+colnames(USArrests)  ## checking the names of the variables
+
+#These functions return a character vector listing the columns 
+names(USArrests)[1] ##We pick up the first element of the vector
+
+# The same logic applies to the rows of our dataset
+
+rownames(USArrests) ## Checking the row names
+rownames(USArrests)[50]  ## Selecting Wyoming state
+```
+---
+Thanks
