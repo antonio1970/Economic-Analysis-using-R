@@ -28,6 +28,7 @@ Try to compute the mean using a simple code for the previous numeric vector
 ```
 
 ```{r mean-solution}
+datos <- c(-15, 2, 3, 4, 5, 6, 7, 8, 9, 12)
 sum(datos)/10
 ```
 
@@ -57,12 +58,52 @@ range(mtcars$mpg)
 ```
 
 
-Let use the quantile function
-
 ```{r quantile, exercise = TRUE}
+# Let use the quantile function to compute the median, and check it out with the median function
+```
+
+```{r quantile-solution}
+quantile (mtcars$mpg, probs = 0.5)
+median(mtcars$mpg)
+```
+
+```{r quantile2, exercise = TRUE}
+#let us compute the quantiles (1, 2, and 3 quartile)
 
 ```
 
+```{r quantile2-solution}
+quantile (mtcars$mpg, probs = c(0.25, 0.50, 0.75))
+```
+
+
+```{r variance, exercise = TRUE}
+# Let us compute the variance and standard deviation
+
+```
+
+```{r variance-solution}
+var(mtcars$mpg)
+sqrt(var(mtcars$mpg))
+```
+
+### Skew and kurtosis
+
+
+*Perhaps more helpfully, it might be useful to point out that the psych
+package contains a skew() function that you can use to calculate skewness.*
+
+```{r skew, exercise = TRUE}
+# Let us compute the skewness and kurtosis
+```
+
+
+```{r skew-solution}
+install.packages("psych", repos = "https://cran.cnr.berkeley.edu/")
+library(psych)
+skew(mtcars$mpg)
+kurtosi(mtcars$mpg)
+```
 
 ### Quiz
 
