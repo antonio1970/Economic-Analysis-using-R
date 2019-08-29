@@ -1,0 +1,159 @@
+---
+title: "Lab 8 : Introduction to panel data models"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Introduction
+
+The purpose of this in-class lab is to use R to practice with linear panel data models. For that purpose, we will be using the `plm`package dveloped by .
+
+
+## Panel data models
+
+### Static Panel data models
+
+In a panel data setting, we could specify our model as follows:
+
+\begin{equation}
+y_{it} = x'_{it}  + \alpha_{i} + v_{it}
+\end{equation}
+
+
+- where $y_{it}$ is the dependent variable for individual $i$ in period $t$, and $x_{it}$ is a vector of control variables that are expected to influence $y_{it}$. $\alpha_{i}$ is the individual effect, and $v_{it}$ is the classical error term.
+
+- The $\alpha_{i}$ captures the effects of variables which vary across individuals but are constant over time.  The equation (1) can be estimated by using Ordinary Least Squares (OLS) neglecting the individual heterogeneity across individuals.
+
+## For starters
+
+You might need to install the `plm` package and Open up a new R script (named `ICL13_XYZ.R`, where `XYZ` are your initials) and add the usual "preamble" to the top:
+
+```{r, message=FALSE}
+library(tidyverse)
+library(broom)
+library(plm) # This is an old version, now it is possible to generate tibbles with panelr
+library(funModeling)
+```
+
+### Load the data
+We're going to use Grunfeld data (macro panel).
+
+# Data description
+
+```{r}
+library(dynpanel)
+?Produc
+```
+
+```{r}
+df_status(Produc) # Looking at the amount of zeros or missing values using funModeling package
+pdim(Produc, index = c("state", "year"))
+dim(table(Produc$state,Produc$year))
+```
+
+# Data description (cont..)
+
+It is also important to explore the panel dataset by using dplyr (getting summary statistics of the variables employed in the analysis, correlation analysis, etc)
+
+```{r}
+table<- Produc %>% 
+  group_by(state) %>% 
+  summarize(m_gsp = mean(gsp)) %>% 
+  arrange(desc(m_gsp))
+print (table)
+```
+
+# Simple graph by using ggplot to show the trend in one variable per country
+```{r}
+library(ggplot2)
+ggplot(Produc, aes (x = year, y = gsp)) + 
+         scale_y_log10()+
+  geom_line() +
+  facet_wrap(~as.factor(state))
+
+```
+
+
+# Pooled OLS
+
+```{r}
+#Ignoring the panel data structure. We run a pooled OLS model on the data
+reg = lm(log(gsp) ~ log(pcap) + log(pc)+ log(emp) +unemp, data = Produc)
+summary(reg)
+hist(reg$residuals, col = "green",
+     xlab = 'residuals', main ='Distribution of residuals')
+```
+
+```{r}
+#Using the plm package
+gsp.pool <- plm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp, data=Produc, model ="pooling")
+summary(gsp.pool)
+```
+
+# Fixed effects model (FE)
+
+- A fixed effects model is estimated by running OLS on the transformed model (within transformation). We can also inspect the fixed effects model with the summary function
+
+```{r}
+pmodel2 <- plm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp, data=Produc,  effect = 'twoways', index=c("state", "year"),model="within")
+summary(pmodel2)
+```
+
+
+# Note that the FE model can be estimated by only using time invariant effects
+
+```{r}
+pmodel21 <- plm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp, data=Produc, effect = 'individual',index=c("state"),model="within")
+summary(pmodel21)
+```
+
+```{r}
+# Another way using individual dummies with the lm function, and factor to generate categorical variables
+
+panel_ols <-lm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp + as.factor(state), data=Produc)
+summary(panel_ols)
+
+# Using the lm package
+library(lmtest)
+coeftest(panel_ols, vcov = vcovHC, type = "HC1")
+
+```
+
+
+- save your FE estimates
+
+```{r}
+fixef(pmodel2)
+```
+
+# Testing OLS vs. FE
+
+```{r}
+pFtest(pmodel21, gsp.pool)
+```
+
+
+# Random effects model
+
+```{r}
+pmodel3 <- plm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp, data=Produc, index=c("state", "year"),model="random")
+summary(pmodel3)
+```
+
+
+# Hausman test
+
+```{r}
+# The relevant function to test the FE vs. Random effects approach. This function requires two panel objects.
+
+phtest(pmodel2, pmodel3)
+```
+
+
+# Fit the dynamic panel data model using AB (1991)
+```{r}
+reg<-dpd(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,Produc,index=c("state","year"),1,4)
+summary(reg)
+```
