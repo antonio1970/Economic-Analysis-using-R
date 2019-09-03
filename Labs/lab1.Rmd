@@ -130,11 +130,12 @@ R makes extensive use of third-party packages. We will not get into the details 
 install.packages("tidyverse", repos='http://cran.us.r-project.org')
 install.packages("skimr", repos='http://cran.us.r-project.org')
 install.packages("wooldridge", repos='http://cran.us.r-project.org')
+install.packages("learnr", repos='http://cran.us.r-project.org')
 ```
 
 You've just installed two basic packages. We can also check it out by using the following syntax
 
-```{r}
+```{r, eval= FALSE}
 installed.packages()
 ```
 
@@ -143,14 +144,7 @@ installed.packages()
 
 Basically, you have downloaded them onto your laptop. Just like with other software on your computer, you only need to do the installation once. However, you still need to tell R that you will be using the packages (by using the `library`command). Add the following two lines of code to your script (below the first two lines you wrote). Notice how there are no quotation marks inside the parenthese this time.
 
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
-library(tidyverse) # one of the most famous R pacakge for data manipulation
-library(skimr)  # for data exploration
-library(wooldridge) # it refers to Wooldrige's undergraduate texbook
-library(learnr) # it refers to interactive tutorials 
-```
-
-Whenever you start over a new Rstudio session, you need to load the approrpiate libraries.
+Whenever you start over a new Rstudio session, you need to load the appropriate libraries.
 
 In RStudio, you can also install packages by using the R interface. You will find it at Tools -> Install Package, and there you will get a pop--up window to type the package you want to install
 

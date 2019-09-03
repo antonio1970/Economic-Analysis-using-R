@@ -66,6 +66,7 @@ print (table)
 ```
 
 # Simple graph by using ggplot to show the trend in one variable per country
+
 ```{r}
 library(ggplot2)
 ggplot(Produc, aes (x = year, y = gsp)) + 
